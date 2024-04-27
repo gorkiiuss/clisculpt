@@ -1,0 +1,134 @@
+= SPEC-001: Declarative CLI Framework for Java (CLISculpt)
+:sectnums:
+:toc:
+
+== Background
+
+The CLISculpt project is a framework for Java that allows you to create advanced CLI programs in a declarative way. It is designed to facilitate the development of modular and reusable command line interfaces, with the goal of allowing developers to create CLI applications with ease.
+
+== Requirements
+
+The CLISculpt framework must meet the following requirements:
+
+- *Must have a modular structure*: The components must be reusable and composable.
+- *Must be easy to use*: Developers must be able to inject their models into components easily.
+- *Scalability and extensibility*: The framework must be scalable to support complex CLI applications, and it must be possible to extend it with custom components.
+- *Java Compatibility*: The framework must be compatible with any Java application.
+- *Use in various applications*: The framework should be useful both for applications in early development and for CLI-oriented final products.
+
+== Method
+
+The CLISculpt framework is based on a modular component structure for creating advanced CLI applications in Java. Next, the basic architecture of the framework and the main components that make it up are described.
+
+=== General Architecture
+
+The core of the framework is composed of two main types of components: `CLIComponent` and `CLIContainer`. These components define the structure and organization of CLI applications.
+
+- `CLIComponent`: Abstract class that represents an element of the CLI program. It can be a menu, an option, a label, a screen, etc.
+- `CLIContainer`: Abstract class that groups other components. Two basic types of containers are used to structure components in specific directions:
+- `CLIVertical`: Arranges components vertically.
+- `CLIHorizontal`: Arranges components horizontally.
+
+Other containers are derived from these two to offer more complex structures.
+
+=== Basic Components
+
+The framework includes several core components that allow developers to build CLI applications quickly and easily. Some of the main ones are described below:
+
+- `CLIMenu`: Inherits from `CLIContainer` and represents a menu with multiple options. Contains elements such as labels and menu options.
+- `CLIMenuOption`: Represents an option within a menu. Contains a tag and an associated executable. By selecting an option, you can open other menus or perform actions.
+- `CLILabel`: Represents a label in the CLI interface.
+- `CLIPassword`: This is a password screen that, if entered correctly, allows access to additional components.
+- `CLIAction`: Represents an executable. This is a functional interface and does not inherit from `CLIComponent`.
+- `CLICondition`: Represents a condition that must be met. It is also a functional interface.
+
+=== Framework Use
+
+To use the framework, developers can inherit the base classes to customize them and create their own components. Components have a function to run and a body that represents what they look like in the CLI interface. The body can be extended declaratively to customize the presentation.
+
+For example, to create a menu with multiple options, you can use the following code:
+
+[source,java]
+----
+menu.body(
+    new CLILabel("title"),
+    new CLIMenuOption("option1", ...),
+    new CLIMenuOption("option2", ...),
+    /// ...
+)
+----
+
+== Implementation
+
+To implement the CLISculpt framework and start building advanced CLI applications, follow these steps:
+
+=== Development environment configuration
+
+1. **Java Installation**: Make sure you have a recent version of Java installed. The framework must be compatible with any current version.
+2. **Installing an Integrated Development Environment (IDE)**: Use an IDE for Java such as IntelliJ IDEA, Eclipse or NetBeans to develop and test the framework.
+3. **Build Tools Configuration**: Configure tools like Maven or Gradle to manage project dependencies and construction.
+
+=== Project structure
+
+1. **Create a Java Project**: Set up a new project in your IDE with a workspace suitable for the development of the framework.
+2. **Package Organization**: Organize the framework classes into suitable packages. For example, you can use `com.clisculpt.components` for base components and `com.clisculpt.containers` for containers.
+
+=== Base Component Implementation
+
+1. **Implement CLIComponent**: Create the abstract class `CLIComponent` that will serve as the base for all other components. Define methods to execute the component and to obtain its representative body.
+2. **Implement CLIContainer**: Create the abstract class `CLIContainer` that can contain other components. Define methods for adding and organizing components.
+3. **Implement CLIVertical and CLIHorizontal**: These two containers should inherit from `CLIContainer` and arrange the components in the relevant direction.
+4. **Implement Specific Components**: Implement `CLIMenu`, `CLIMenuOption`, `CLILabel`, `CLIPassword`, `CLIAction`, and `CLICondition` following the method descriptions.
+
+=== Testing and Integration
+
+1. **Unit Testing**: Create unit tests for core components using frameworks like JUnit to ensure they work as expected.
+2. **Continuous Integration**: Set up a continuous integration system to automate testing and ensure code quality.
+
+== Milestones
+
+To ensure an orderly and efficient development of the CLISculpt framework, the following milestones have been defined:
+
+1. **Initial Design Phase:** from 1 to 2 weeks.
+- Confirmation of general design and requirements.
+- Structuring of packages and base components.
+
+2. **Implementation of Basic Components:** from 4 to 8 weeks.
+- Implementation of `CLIComponent` and `CLIContainer`.
+- Implementation of vertical and horizontal containers.
+- Development of `CLIMenu`, `CLIMenuOption`, `CLILabel`, `CLIPassword`, `CLIAction`, and `CLICondition`.
+
+3. **Testing and Quality:** from 2 to 4 weeks.
+- Development of unit tests for components.
+- Configuration of continuous integration tools to automate testing.
+
+4. **Documentation and Examples:** from 2 to 4 weeks.
+- Creation of documentation for developers.
+- Development of examples of use of the framework.
+
+5. **Initial Release:** from 1 to 2 weeks.
+- Publication of the first version of the framework.
+- Compilation of comments from early users to improve the framework.
+
+Every week of work contemplates 5 days of work and every day of work contemplates 8 hours of work. In total the project should last from 400 to 800 hours.
+
+== Gathering Results
+
+To evaluate the success of the CLISculpt framework and determine if it meets the requirements, the following actions will be carried out:
+
+1. **Collection of User Comments**
+- Collect comments and suggestions from developers who use the framework.
+- Identify areas of improvement and possible additions.
+
+2. **Performance Evaluation**
+- Measures the performance of the framework in terms of speed, scalability and efficiency.
+- Ensures that the framework is compatible with different Java applications.
+
+3. **Scalability and Extensibility Analysis**
+- Verify that the framework can support complex CLI applications.
+- Ensures that developers can customize and extend the framework as needed.
+
+4. **Updates and Improvements**
+- Based on feedback and performance results, plan future updates to improve the framework.
+- Introduces new features and components according to user needs.
+
